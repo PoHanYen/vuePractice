@@ -3,9 +3,10 @@
     <h1>UserData</h1>
     <el-table-item label="UserName:"><el-input v-model="search" si></el-input></el-table-item>
     <el-table :data="tableFilter" height="250" style="width: 100%" :row-class-name="tableRowClassName">
-    <el-table-column v-for="(obj,title) in tableData[0]" :key="title" :prop="title" :label="title" width="400"/>
+    <el-table-column v-for="(obj,title) in tableData[0]" :key="title" :prop="title" :label="title" width="100"/>
+    <el-table-column><el-button @click="deleteItem" type="danger" size="small" >Delete</el-button></el-table-column>
     </el-table>
-</div>
+    </div>
   </template>
   
   <script lang="ts" setup>
@@ -65,7 +66,9 @@ import {computed,ref} from 'vue'
     return 'success-row'
   }
 }
-  
+  function deleteItem (){
+    alert('delete')
+  }
 </script>
 <style>
 .el-table .warning-row {

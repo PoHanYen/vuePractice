@@ -1,11 +1,12 @@
 <template>
-    <div sytle="width:50%; margin:auto">
+    <div sytle="width:70%; margin:auto">
+    <h1>UserData</h1>
     <el-form :model="form" label-width="120px">
       <el-form-item label="Name">
-        <el-input v-model="form.name" />
+        <el-input v-model.trim="form.name" />
       </el-form-item>
       <el-form-item label="Age">
-        <el-input v-model="form.age" />
+        <el-input v-model.number="form.age" />
       </el-form-item>
       <el-form-item label="Gender">
         <el-select v-model="form.gender" placeholder="Gender">
@@ -32,8 +33,8 @@
         </el-select>
      </el-form-item>
      <el-form-item>
-      <el-button type="primary" @click="onSubmit"
-        >Submit</el-button>
+      <el-button v-if="isShow1" type="primary" @click="onSubmit">Submit</el-button>
+      <el-button v-if="!isShow1" type="primary" @click="onReset">reset</el-button>
     </el-form-item>
 
     </el-form>
@@ -45,6 +46,7 @@
   import type { FormInstance, FormRules } from 'element-plus'
 
     const ruleFormRef = ref<FormInstance>()
+  const isShow1 = ref(true);
 
   // do not use same name with ref
   const form = reactive({
@@ -56,7 +58,12 @@
   })
   
   const onSubmit = () => {
-    alert('submit!')
+    isShow1.value=false
+        alert('submit!')
+  }
+  const onReset = () => {
+    isShow1.value=true
+        alert('reset!')
   }
   </script>
   
